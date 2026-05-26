@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTOCOLO MIRADA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estética General Basada en la Interfaz (Verde Azulado/Cian) */
+        body { 
+            background-color: #060d13; 
+            color: #d1f4ff; 
+            font-family: 'Courier New', Courier, monospace;
+            background-image: radial-gradient(circle at 50% 30%, #0c2331 0%, #060d13 80%);
+            min-height: 100vh;
+        }
+        .card-breakout { 
+            background-color: rgba(10, 25, 36, 0.85); 
+            border: 2px solid #00f3ff; 
+            border-radius: 4px; 
+            padding: 30px; 
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+        h1, h2, h3, h4, h5 {
+            color: #00f3ff; 
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .text-alert {
+            color: #ff3b3b;
+            text-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
+        }
+        .img-pista { 
+            max-width: 100%; 
+            max-height: 380px; 
+            border-radius: 4px; 
+            border: 1px solid #00f3ff; 
+            margin-bottom: 25px; 
+            display: block; 
+            margin-left: auto; 
+            margin-right: auto;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+        }
+        .oculto { display: none !important; }
+        
+        /* Inputs y Botones Estilo Terminal */
+        .form-control-cyber {
+            background-color: #03090e !important;
+            border: 1px solid #00a8b5 !important;
+            color: #00f3ff !important;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+        .form-control-cyber:focus {
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.4) !important;
+            border-color: #00f3ff !important;
+        }
+        .btn-cyber { 
+            background-color: transparent; 
+            color: #00f3ff; 
+            border: 1px solid #00f3ff;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(0, 243, 255, 0.2);
+        }
+        .btn-cyber:hover { 
+            background-color: #00f3ff; 
+            color: #060d13; 
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+        }
+        header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+        /* Elementos de Estado y Progreso */
+        .progreso-badge { 
+            font-size: 1rem; 
+            background-color: #05141c; 
+            color: #00f3ff; 
+            border: 1px solid #00f3ff; 
+            padding: 8px 12px;
+        }
+        .pista-ganada { 
+            background-color: rgba(0, 243, 255, 0.05); 
+            border: 1px dashed #00f3ff; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #aae9ff;
+            line-height: 1.4;
+        }
+        .victoria-cyber {
+            border: 2px solid #00f3ff !important; 
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(0, 243, 255, 0.1) !important;
+            background-color: rgba(10, 25, 36, 0.9) !important;
+        }
+        .victoria-cyber h1 {
+            color: #00f3ff !important; 
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.7) !important;
+        }
+        .victoria-cyber .text-white-cyber {
+            color: #d1f4ff !important; 
+        }
+        .border-success-cyber {
+            border: 1px solid #00f3ff !important; 
+        }
+    </style>
+</head>
+<body>
+   <header>
+        <img id="cabecera" src="" alt="Cabecera MIRADA" style="width: 100%; height: auto;">
+    </header>
+
+<div class="container my-5 justify-content-center d-flex">
+    <div class="w-100" style="max-width: 850px;">
+
+       <div id="pantalla-inicio" class="card-breakout">
+            <div class="text-center">
+                <div class="h6 text-muted mb-2">UNIVERSIDAD DE GRANADA · PROTOCOLO MIRADA 2026</div>
+                <h1 class="display-5 mb-1 text-alert">⚠️ INCIDENTE CRÍTICO DETECTADO</h1>
+                <p class="text-muted small mb-4">[ REGISTRO DE SISTEMA · 03:17 AM ]</p>
+            </div>
+            
+            <div class="my-4 text-start p-4 border border-secondary bg-black rounded" style="line-height: 1.6; color: #aae9ff; font-size: 0.95rem;">
+                <p>Los servidores pedagógicos de la Universidad de Granada han activado un <strong>bloqueo automático</strong> sobre todos los entornos educativos conectados al sistema MIRADA.</p>
+                
+                <p>Durante años, MIRADA fue utilizado para analizar prácticas de Educación Infantil y detectar dinámicas incompatibles con el desarrollo humano de la infancia. El sistema podía de forma autónoma: <em>identificar rutinas, analizar espacios, registrar secuencias de aprendizaje y reconocer patrones sociales</em>.</p>
+                
+                <p>Pero hace diecisiete días ocurrió algo inesperado. MIRADA comenzó a emitir advertencias que ningún técnico logró explicar. No señalaba errores matemáticos, ni fallos de programación, ni amenazas externas. Simplemente repetía en bucle el mismo mensaje: <span class="text-alert fw-bold">“Aumento crítico de aprendizaje sin experiencia”</span>.</p>
+                
+                <p class="m-0">Horas después, la <strong>Dra. Vera Solén</strong>, investigadora responsable del proyecto MIRADA, desapareció. Antes de perder el contacto, Vera activó un protocolo de contingencia no registrado oficialmente que fragmentó el núcleo de MIRADA en tres partes independientes. Desde entonces, ningún equipo técnico ha logrado restaurar el sistema...</p>
+            </div>
+
+            <div class="text-center my-4">
+                <h4 class="text-success mb-3">📡 PROTOCOLO DE EMERGENCIA ACTIVADO</h4>
+                <img id="reto_Vera" src="" class="img-pista" alt="Transmisión Recuperada - Dra. Solén">
+            </div>
+
+            <div class="mt-4 mx-auto" style="max-width: 400px;">
+                <button onclick="cambiarPantalla('pantalla-inicio', 'pantalla-crucigrama')" class="btn btn-cyber btn-lg w-100 py-3 fw-bold">⚡ ENLAZAR CON EL TERMINAL GENERAL</button>
+            </div>
+        </div>
+
+        <div id="pantalla-crucigrama" class="card-breakout oculto">
+            <div class="text-center">
+                <div class="h6 text-muted mb-2">UNIVERSIDAD DE GRANADA</div>
+                <h1>👁️ PROTOCOLO MIRADA </h1>
+                <p class="text-alert fw-bold mb-4">[ ALERTA: RESTRICCIÓN DE NODO MÚLTIPLE ]</p>
+                <p class="lead">Resolved el crucigrama. La palabra clave obtenida por vuestro equipo os permitirá INICIAR vuestro nodo específico del sistema.</p>
+            </div>
+            
+            <div class="text-center my-4">
+                <img id="crucigrama" src="" alt="Crucigrama Común - MIRADA" class="img-pista">
+            </div>
+
+            <div class="mt-4 mx-auto" style="max-width: 450px;">
+                <label for="clave-crucigrama" class="form-label text-muted text-center d-block">INTRODUZCA LA CLAVE DE SU NODO:</label>
+                <input type="text" id="clave-crucigrama" class="form-control text-center form-control-cyber mb-3 fs-5" placeholder="Esperando credenciales...">
+                <button onclick="validarAccessItinerario()" class="btn btn-cyber w-100 py-2">INICIAR MÓDULO</button>
+                <div id="error-crucigrama" class="text-danger small mt-2 text-center oculto">❌ CREDENCIALES RECHAZADAS. Intente de nuevo.</div>
+            </div>
+        </div>
+
+        <div id="pantalla-pruebas" class="card-breakout oculto">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <span id="nombre-itinerario" class="h4 m-0">NODO ACCESIBLE</span>
+                <span id="badge-progreso" class="badge progreso-badge">PRUEBA 2 / 10</span>
+            </div>
+            <hr style="border-color: #00f3ff;">
+            
+            <div class="text-center">
+                <img id="imagen-pista" src="" class="img-pista">
+            </div>
+            
+            <div class="my-4">
+                <p id="texto-enigma" class="fs-5 text-center px-3"></p>
+            </div>
+            
+            <div class="mx-auto" style="max-width: 500px;">
+                <div class="input-group mb-3">
+                    <input type="text" id="respuesta-prueba" class="form-control form-control-cyber" placeholder="Introduzca la solución...">
+                    <button onclick="verificarRespuestaPrueba()" class="btn btn-cyber" type="button">DECODIFICAR</button>
+                </div>
+                <div id="feedback-error" class="text-danger small mt-1 oculto text-center">❌ Código incorrecto. Reescriba la solución.</div>
+            </div>
+        </div>
+
+        <div id="pantalla-reto" class="card-breakout oculto">
+            <h2 class="text-center mb-2">🌀 DESAFÍO DE RETO INTERNO</h2>
+            <p class="text-muted text-center mb-4">Procese las 3 preguntas analíticas para restaurar la comprensión del algoritmo.</p>
+            
+            <div id="zona-pregunta-reto" class="p-4 bg-black rounded mb-4 border border-secondary">
+                <h4 id="titulo-pregunta-reto" class="text-info mb-3">Pregunta 7 de 10</h4>
+                <div class="text-center">
+                    <img id="imagen_reto" src="" class="img-pista mt-2">
+                </div>
+                <p id="texto-pregunta-reto" class="fs-5 mt-2 text-center px-2"></p>
+                
+                <div class="input-group mt-4 mx-auto" style="max-width: 500px;">
+                    <input type="text" id="respuesta-reto" class="form-control form-control-cyber" placeholder="Respuesta del analista...">
+                    <button onclick="verificarRespuestaReto()" class="btn btn-cyber" type="button">CONFIRMAR</button>
+                </div>
+            </div>
+
+            <div id="feedback-error-reto" class="text-danger small mt-2 oculto text-center">
+❌ Respuesta incorrecta
+</div>
+
+            <div id="panel-pistas" class="mt-4">
+                <h5 class="text-success mb-3">📋 REGISTROS DE INFORMACIÓN RECUPERADOS:</h5>
+                <div id="lista-pistas"></div>
+            </div>
+
+           <div id="candado-bloqueo-itinerario" class="mt-4 p-4 border border-warning rounded oculto bg-black">
+    
+    <h4 class="text-alert text-center mb-3">🔒 RECONEXIÓN COMPLETA DEL NODO</h4>
+    
+    <div class="text-center mb-3">
+        <img id="img-final-nodo" src="" class="img-pista oculto" alt="Imagen Final del Itinerario">
+    </div>
+
+    <p class="text-center text-muted small mt-3">Utilice los registros recuperados...</p>
+    <div class="input-group mx-auto mt-3" style="max-width: 450px;">
+        <input type="text" id="clave-final-itinerario" class="form-control text-center">
+        <button onclick="verificarClaveFinalItinerario()" class="btn btn-warning">DESBLOQUEAR NODO</button>
+    </div>
+</div>
+        </div>
+
+        <div id="pantalla-cooperativa" class="card-breakout oculto">
+            <h2 class="text-center mb-3">💥 UNIFICACIÓN DE PROTOCOLO COOPERATIVO</h2>
+            <p class="text-center text-muted">Vuestro nodo individual ha sido restaurado con éxito. Para romper el bloqueo definitivo de MIRADA, debéis reuniros con los otros dos equipos e introducir las 3 Soluciones Obtenidas a la vez.</p>
+            
+            <div class="text-center my-4">
+                <img id="img-cooperativa-final" src="" alt="Reto Final Cooperativo" class="img-pista">
+            </div>
+
+            <div class="row g-3 mx-auto mt-4" style="max-width: 700px;">
+                <div class="col-md-4">
+                    <label class="small text-muted mb-1 d-block text-center">SOLUCIÓN ITINERARIO A (ESPACIO)</label>
+                    <input type="text" id="codigo-final-1" class="form-control text-center form-control-cyber" placeholder="Equipo Espacio">
+                </div>
+                <div class="col-md-4">
+                    <label class="small text-muted mb-1 d-block text-center">SOLUCIÓN ITINERARIO B (TIEMPO)</label>
+                    <input type="text" id="codigo-final-2" class="form-control text-center form-control-cyber" placeholder="Equipo Tiempo">
+                </div>
+                <div class="col-md-4">
+                    <label class="small text-muted mb-1 d-block text-center">SOLUCIÓN ITINERARIO C (CULTURA)</label>
+                    <input type="text" id="codigo-final-3" class="form-control text-center form-control-cyber" placeholder="Equipo Cultura">
+                </div>
+                
+               <div id="bloque-prueba-final" class="col-12 mt-4 pt-3 border-top border-secondary oculto">
+
+    <h4 class="text-center mb-3">🔑 PROTOCOLO FINAL DE ACCESO</h4>
+
+    <div class="text-center my-4">
+        <img id="img-validacion-final" src="" class="img-pista" alt="Validación Final MIRADA">
+    </div>
+
+    <div class="p-4 bg-black rounded border border-secondary">
+
+        <p class="text-info text-center fw-bold">
+            VALIDACIÓN EN CURSO…
+        </p>
+
+        <p class="text-center">
+            Conexiones restablecidas.
+        </p>
+
+        <hr style="border-color:#00f3ff;">
+
+        <h5 class="text-center text-alert mb-3">
+            ANÁLISIS DEL SISTEMA
+        </h5>
+
+        <p>
+            Las dimensiones de la experiencia infantil vuelven a aparecer vinculadas entre sí.
+            Pero MIRADA identifica un elemento presente en todos los registros analizados…
+            y ausente en todos los procesos automáticos.
+        </p>
+
+        <div class="p-3 mt-4 mb-4 border border-info rounded" style="background-color: rgba(0,243,255,0.05);">
+
+            <p class="text-info fw-bold mb-2">
+                📡 ARCHIVO RECUPERADO · V. SOLÉN
+            </p>
+
+            <p class="fst-italic m-0">
+                “Durante años intentamos enseñar a MIRADA a reconocer patrones educativos.
+                El sistema aprendió a clasificar espacios, rutinas y conductas.
+                Pero educar nunca fue clasificar conductas.
+                Los niños no aprenden únicamente porque algo ocurra.
+                Aprenden cuando alguien les ayuda a interpretar lo vivido.”
+            </p>
+
+        </div>
+
+        <h5 class="text-center text-warning mb-3">
+            VALIDACIÓN DEL PROTOCOLO
+        </h5>
+
+        <p>
+            La pantalla muestra:
+        </p>
+
+        <ul>
+            <li>los tres núcleos finalmente conectados;</li>
+            <li>una última conexión todavía inactiva;</li>
+            <li>y el sistema esperando autorización externa.</li>
+        </ul>
+
+        <div class="text-center my-4">
+            <span class="badge progreso-badge fs-6 px-4 py-3">
+                ESPERANDO INTERVENCIÓN HUMANA
+            </span>
+        </div>
+
+        <p>
+            Para completar el Protocolo MIRADA debéis identificar el elemento humano capaz de:
+        </p>
+
+        <ul>
+            <li>conectar experiencia y significado;</li>
+            <li>transformar vivencias en aprendizaje compartido;</li>
+            <li>acompañar la interpretación infantil del entorno;</li>
+            <li>y reconstruir aquello que ningún sistema automático puede generar por sí solo.</li>
+        </ul>
+
+    </div>
+
+    <div class="mx-auto mt-4" style="max-width: 450px;">
+        <input type="text"
+               id="input-prueba-final"
+               class="form-control text-center form-control-cyber border-info"
+               placeholder="Clave de Validación...">
+    </div>
+
+</div>
+
+                <div class="col-12 mt-4">
+                    <button id="btn-activar-final" onclick="procesarFaseCooperativa()" class="btn btn-cyber btn-lg w-100 py-3 fw-bold">💥 EJECUTAR PROTOCOLO DE DESBLOQUEO 💥</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pantalla-victoria" class="card-breakout victoria-cyber oculto text-center">
+            <h1 class="display-4 fw-bold mb-4">🏆 SISTEMA REINICIADO CON ÉXITO</h1>
+            <p class="fs-4 text-white-cyber">Los algoritmos de MIRADA vuelven a estar bajo control humano gracias a vuestra coordinación inter-módulos.</p>
+            <div class="text-center my-4">
+           <img id="img-victoria-final" src="" class="img-pista" alt="Sistema MIRADA Restaurado">
+            </div>
+            <div class="p-4 my-4 bg-black rounded fs-4 border-success-cyber">
+                <span style="color: #00f3ff; font-weight: bold; text-shadow: 0 0 10px rgba(0,243,255,0.4)">MENSAJE DEL NÚCLEO CENTRAL:</span>
+                <p class="mt-3 text-white-cyber italic">"Ningún algoritmo puede sustituir la mirada de un maestro"</p>
+            </div>
+            <div class="text-muted small mt-3">Misión completada · Universidad de Granada 2026</div>
+        </div>
+
+    </div>
+</div>
+<script src="imagenes.js"></script>
+<script>
+    document.getElementById('cabecera').src = IMAGENES["cabecera.png"];
+    document.getElementById('reto_Vera').src = IMAGENES["reto_Vera.png"];
+    document.getElementById('crucigrama').src = IMAGENES["crucigrama.jpg"];
+    document.getElementById('img-cooperativa-final').src = IMAGENES["4.1.png"];
+    document.getElementById('img-validacion-final').src = IMAGENES["4.2.png"];
+    document.getElementById('img-victoria-final').src = IMAGENES["4.3.png"];
+
+    const CLAVES_CRUCIGRAMA = {
+        "nodo": 1,   // Itinerario A: ESPACIO
+        "onda": 2,   // Itinerario B: TIEMPO
+        "idea": 3    // Itinerario C: CULTURA
+    };
+    
+    const DATOS_JUEGO = {
+        1: { 
+            nombre: "MÓDULO A: ESPACIO",
+            pruebas: [
+                { img: "1.1.png", enigma: "PRUEBA 2 · MIRADA · NÚCLEO ESPACIAL\n\nEl sistema ha recuperado fragmentos relacionados con la construcción progresiva de la experiencia espacial infantil. Los registros aparecen desordenados. MIRADA conserva posiciones y coordenadas… pero no logra reconstruir correctamente cómo el niño aprende a habitar el espacio.\n\n📋 REGISTROS RECUPERADOS:\n\nREGISTRO A:\n'El niño recorre el espacio; se desplaza; toca; explora y construye referencias mediante la experiencia directa.'\n\nREGISTRO B:\n'El entorno comienza a organizarse mediante puntos de referencia, recorridos y relaciones perceptivas.'\n\nREGISTRO C:\n'El espacio deja de depender únicamente de la experiencia inmediata y comienza a representarse mentalmente.'\n\n⚡ INSTRUCCIÓN:\nReconstruid correctamente la secuencia de desarrollo espacial humano. Cuando la secuencia sea correcta, extraed la primera letra del primer registro, la segunda letra del segundo y la tercera letra del tercero.\n\nIntroducid la clave generada para restaurar el núcleo fragmentado.", sol: "ven" },
+                { img: "1.2.png", enigma: "PRUEBA 3 · MIRADA · NÚCLEO ESPACIAL\n\n[ ERROR DE RECONSTRUCCIÓN TOPOGRÁFICA ]\nEl sistema ha intentado reconstruir un entorno frecuentemente utilizado por varios niños. Resultado:\n• Recorridos interrumpidos.\n• Trayectorias repetidas.\n• Zonas visitadas sin referencias visibles.\n• Rutas que regresan constantemente al mismo punto.\n\n⚠️ ANOMALÍA DETECTADA:\nLos desplazamientos humanos no siguen siempre la trayectoria más corta. MIRADA puede calcular coordenadas y distancias… pero continúa produciendo errores al intentar comprender cómo los seres humanos organizan mentalmente el espacio vivido.\n\n📋 REGISTRO RECUPERADO:\n'Algunos niños eran capaces de llegar correctamente al destino incluso cuando desaparecían las señales visibles del entorno.'\n\n⚡ VALIDACIÓN REQUERIDA:\nIntroduce el tipo de representación mental que permite organizar internamente el espacio y orientarse dentro de él.", sol: "mapa cognitivo" },
+                { img: "1.3.png", enigma: "PRUEBA 4 · MIRADA · NÚCLEO ESPACIAL\n\nEl sistema ha recuperado un fragmento incompleto de representación espacial:\n✔ Entrada\n✔ Banco\n✔ Árbol\n✔ Pasillo\n✔ Plaza\n\nSin embargo, MIRADA continúa generando errores graves al relacionarlas entre sí. Las conexiones aparecen fragmentadas, las rutas no logran estabilizarse y los recorridos cambian continuamente.\n\nParte del protocolo de desencriptado continúa distribuido entre otros núcleos fragmentados. Ningún equipo conserva por sí solo la secuencia completa de restauración.\n\n📡 MENSAJE RECUPERADO - 13 34 33 15 13 44 11 33 23 24 44 34 43 54 42 45 44 11 43 35 11 42 11 21 34 42 32 11 42 45 33 11 42 15 14 15 43 35 11 13 24 11 31\n\n⚡ VALIDACIÓN REQUERIDA:\nIntroduce el término correspondiente para restaurar estas redes espaciales.", sol: "configuraciones" },
+                { img: "1.4.png", enigma: "PRUEBA 5 · MIRADA · NÚCLEO ESPACIAL\n\nExcelente. MIRADA ha restaurado parcialmente la arquitectura espacial del entorno. El sistema reconoce: posiciones, recorridos, referencias espaciales básicas y relaciones simples entre objetos.\n\nSin embargo, continúa interpretando el espacio exclusivamente desde un único punto de vista.\n\n📋 REGISTRO RECUPERADO:\n'Durante esta fase del desarrollo espacial infantil, el niño interpreta el entorno principalmente desde su propia perspectiva.'\n\n🔍 ANÁLISIS DEL SISTEMA:\nMIRADA detecta: percepción centrada en la propia posición, dificultad para interpretar perspectivas ajenas y dependencia del punto de vista inmediato.\n\n⚡ VALIDACIÓN REQUERIDA:\nIntroduce el concepto asociado a esta forma inicial de percepción espacial.", sol: "egocentrismo" },
+                { img: "1.5.png", enigma: "PRUEBA 6 · MIRADA · NÚCLEO ESPACIAL\n\nMIRADA ha restaurado parcialmente la percepción de perspectivas espaciales diferentes. El sistema identifica cambios de posición y variaciones en la representación de los objetos.\n\n📋 REGISTRO RECUPERADO:\n'Al observar una maqueta desde lugares diferentes, algunos niños describían objetos distintos. Otros comprendían que seguían observando el mismo espacio desde otra perspectiva.'\n\n🗄️ REGISTROS DE ENTORNO:\n• REGISTRO 01: 'La ventana está frente a la puerta.'\n• REGISTRO 02: 'La puerta queda detrás de la estantería.'\n• REGISTRO 03: 'Desde aquí no puedo ver ninguna ventana.'\n• REGISTRO 04: 'La mesa ocupa el centro de la habitación.'\n\n❌ ERROR CRÍTICO:\nMIRADA ha clasificado los registros como contradictorios al interpretar cada observación como un entorno independiente.\n\n⚡ VALIDACIÓN REQUERIDA:\nIntroduce la capacidad humana para comprender un mismo espacio desde perspectivas diferentes.", sol: "descentración" },
+            ],
+           reto: [
+                { num: 7, img: "1.6.png", pregunta: "PARTE 2 · RESTAURACIÓN DEL NÚCLEO ESPACIAL\nCada respuesta permitirá recuperar una parte de la experiencia espacial humana eliminada por MIRADA.\n\n🗄️ REGISTRO 1:\nMIRADA ha localizado el primer núcleo de orientación espacial infantil.\n\n'El hogar entendido como epicentro psicológico y espacial del niño recibe el nombre de...'", sol: "domocentrismo", pistaOtorgada: "📡 REGISTRO DE SUJETO RECUPERADO:\nMIRADA ha identificado con éxito la categoría del sujeto humano que comienza a construir referencias espaciales a partir de un lugar de seguridad y pertenencia.\n🏷️ ESTADO: Sujeto identificado en los servidores centrales." },
+                { num: 8, img: "1.7.png", pregunta: "🗄️ REGISTRO 2:\nMIRADA recupera parcialmente los primeros sistemas de referencia espacial humana.\n\n'Antes de comprender el espacio exterior, el niño utiliza su propio cuerpo como primer punto de referencia.'\n\n⚡ REQUERIMIENTO:\nIdentificar la capacidad humana que permite organizar y comprender espacialmente el entorno a partir del propio cuerpo.", sol: "orientación", pistaOtorgada: "📡 REGISTRO DE ACCIÓN EN PROCESO:\nEl sistema reconoce desplazamientos… pero no comprende cómo el ser humano construye significado dentro del espacio.\n⚠️ CAMPO SEMÁNTICO ABSTRACCIÓN: El núcleo requiere la acción humana en tiempo presente de dar sentido, ocupar y dar vida al espacio vivido." },
+                { num: 9, img: "1.8.png", pregunta: "🗄️ REGISTRO 3:\nMIRADA intenta reconstruir el objetivo final del desarrollo espacial infantil.\n\n'El objetivo final del desarrollo espacial infantil es favorecer la...'", sol: "autonomía", pistaOtorgada: "📡 REGISTRO DE SÍNTESIS GLOBAL:\nProtocolo de análisis final abierto.\n⚡ INSTRUCCIÓN: Para abrir el candado de este nodo, combinad en una sola frase el sujeto humano restaurado en el Registro 1 y su acción de dar sentido y habitar el espacio en presente." }
+            ],
+            claveFinalItinerario: "el niño habita",
+            codigoCajaFuerte: "el niño habita"
+        },
+        2: { 
+            nombre: "MÓDULO B: TIEMPO",
+            pruebas: [
+                { img: "2.1.png", enigma: "PRUEBA 2 · NÚCLEO TEMPORAL\nREGISTRO CONMEMORATIVO INCOMPLETO\n\n📊 ESTADO DEL SISTEMA:\n• Integridad temporal: 12%\n• Continuidad narrativa: INESTABLE\n• Reconstrucción semántica: FALLIDA\n\n🔍 ANÁLISIS AUTOMÁTICO:\nEl sistema identifica: monumento civil, inscripción parcial, marcador cronológico y vestigio documental.\n❌ ERROR: Incapaz de interpretar el significado simbólico del registro.\n\n📋 FRAGMENTO RECUPERADO:\n'Toda comunidad preserva su ______ mediante relatos, recuerdos y vestigios.'\n\n⚡ INSTRUCCIÓN DEL SISTEMA:\nReconstruye el concepto eliminado para restaurar la continuidad histórica.", sol: "memoria" },
+                { img: "2.2.png", enigma: "PRUEBA 3 · NÚCLEO TEMPORAL\nARCHIVO TEMPORAL INESTABLE\n\nLas secuencias recuperadas aparecen parcialmente desordenadas dentro del sistema. MIRADA identifica movimiento, objetos, figuras humanas y transformaciones visibles. Sin embargo, continúa produciendo errores críticos al reconstruir las secuencias.\n\n🗄️ REGISTROS DE SISTEMA:\n• REGISTRO 01: [ SUCESIÓN ] Ordenar acontecimientos entre un 'antes' y un 'después'.\n• REGISTRO 02: [ SIMULTANEIDAD ] Dos acciones que se desarrollan al mismo tiempo.\n• REGISTRO 03: [ DURACIÓN ] Extensión temporal entre un inicio y un final.\n• REGISTRO 04: [ VELOCIDAD ] Relación entre movimiento y tiempo empleado.\n\n🎯 OBJETIVO DE LA PRUEBA:\n1. Identificar qué imagen corresponde a cada concepto.\n2. Localizar su posición dentro de la matriz.\n3. Convertir cada posición en el código de dirección según la guía.\n\n📖 GUÍA DE CODIFICACIÓN:\nIZQUIERDA = IZ | DERECHA = DE | ABAJO = AB | ARRIBA = AR\n\n⚠️ ALERTA DE FORMATO CRÍTICO:\nDebes dejar OBLIGATORIAMENTE un espacio en blanco entre cada dirección.\n\n💻 EJEMPLO DE INTRODUCCIÓN DE CLAVE: AR AB IZ DE", sol: "ab iz de ar" },
+                { img: "2.3.png", enigma: "PRUEBA 4 · NÚCLEO TEMPORAL\nREGISTRO DE TRANSFORMACIÓN\n\n⚠️ MENSAJE DEL SISTEMA:\nMIRADA ha detectado una modificación repetida en los registros escolares. El sistema identifica: alteración de rutinas, cambios en el entorno y nuevas formas de organización. Sin embargo, los archivos humanos añaden conexiones que MIRADA no logra comprender.\n\n📋 ARCHIVOS COMPLEMENTARIOS:\n• ANTES: Fotografía de niños jugando en el patio.\n• DESPUÉS: Fotografía de niños dentro del aula con botas mojadas.\n• PRENSA: 'Las fuertes lluvias obligaron a cerrar temporalmente el patio escolar.'\n• NOTA INFANTIL: 'Ahora jugamos dentro porque fuera hay mucho barro.'\n• REGISTRO V. SOLÉN: 'Los niños comienzan a comprender el tiempo cuando descubren que los cambios ocurren por algo.'\n\n🔍 ANÁLISIS DEL SISTEMA:\nMIRADA puede ordenar el 'antes' y el 'después', pero no logra comprender qué conecta ambos momentos.\n\n⚡ VALIDACIÓN REQUERIDA:\nEl sistema necesita identificar qué relación conceptual explica el cambio entre ambos registros.", sol: "causalidad" },
+                { img: "2.4.png", enigma: "PRUEBA 5 · NÚCLEO TEMPORAL\nFRAGMENTO MNÉSICO DEGRADADO\n\nEl sistema ha recuperado un registro relacionado con la construcción humana del tiempo y la memoria. El fragmento presenta desplazamiento lingüístico, erosión secuencial y pérdida parcial de significado.\n\n📋 FRAGMENTO ENCRIPTADO:\n'ZDH GSQJSGRDH OWHZORDH HDZD ORFJWSGSB HSBIWRD QJOBRD ZDUGOADH JBWGZDH SB JB GSZOID'\n\n🗄️ PARA DESCIFRAR EL MENSAJE DEBES COLABORAR CON TUS COMPAÑEROS\nPatrón identificado: sustitución alfabética uniforme. Reconstrucción parcial posible.\nParte de los protocolos permanecen distribuidos entre otros núcleos fragmentados. Ningún equipo conserva por sí solo la secuencia completa.\n\n⚡ INSTRUCCIÓN:\nConsulta otros nodos de memoria para reconstruir el fragmento deteriorado e introduce la ÚLTIMA PALABRA del recuerdo restaurado.", sol: "relato" },
+                { img: "2.5.png", enigma: "PRUEBA 6 · NÚCLEO TEMPORAL\nDOCUMENTO EXPERIENCIAL RECUPERADO\n\nMIRADA ha localizado un registro asociado a una experiencia colectiva del pasado. El sistema identifica: fechas, referencias sociales, secuencias ceremoniales y marcadores cronológicos.\n\n🔍 ANÁLISIS DEL SISTEMA:\nMIRADA puede calcular exactamente CUÁNDO ocurrió el acontecimiento... pero no comprender cómo fue vivido cualitativamente por quienes participaron en él.\n\n⚡ VALIDACIÓN REQUERIDA:\nIntroduce el concepto de la dimensión temporal ausente que escapa a la medición cronológica del algoritmo.", sol: "kairós" }
+            ],
+            reto: [
+                { num: 7, img: "2.6.png", pregunta: "2ª PARTE · RESTAURACIÓN DEL PROTOCOLO TEMPORAL\nIDENTIDAD TEMPORAL INCOMPLETA\n\nEl sistema ha recuperado secuencias, recuerdos, referencias del pasado y fragmentos de experiencia humana. Sin embargo, MIRADA todavía no logra identificar al sujeto que transforma el tiempo vivido en memoria y aprendizaje.\n\n🗄️ PRUEBA 1:\nLa representación mental que permite organizar acontecimientos, referencias y relaciones del pasado recibe el nombre de mapa cognitivo del...", sol: "pasado", pistaOtorgada: "📡 PISTA 1 REGISTRADA:\nMIRADA ha identificado con éxito la categoría del sujeto humano que comienza a construir referencias temporales a partir de sus experiencias vividas.\n🏷️ ESTADO: Identidad del sujeto estabilizada en la base de datos." },
+                { num: 8, img: "2.7.png", pregunta: "🗄️ PRUEBA 2:\nLa repetición estable de acciones cotidianas que ayuda a organizar y anticipar la experiencia temporal infantil recibe el nombre de...", sol: "rutina", pistaOtorgada: "📡 PISTA 2 REGISTRADA:\nMIRADA puede registrar secuencias y acontecimientos mecánicos… pero todavía no comprende cómo las experiencias humanas llegan a asimilarse y convertirse en recuerdos duraderos." },
+                { num: 9, img: "2.8.png", pregunta: "🗄️ PRUEBA 3:\nLa capacidad para comprender cómo vivieron otras personas en contextos históricos diferentes se denomina...", sol: "empatía histórica", pistaOtorgada: "📡 PISTA 3 REGISTRADA:\nProtocolo de análisis final abierto.\n⚡ INSTRUCCIÓN: Para abrir el candado de este nodo, debéis unir en una sola frase el sujeto temporal identificado en la Pista 1 y la acción cognitiva humana de recuperar mentalmente las experiencias pasadas en tiempo presente." }
+            ],
+            claveFinalItinerario: "el niño recuerda",
+            codigoCajaFuerte: "el niño recuerda"
+        },
+        3: { 
+            nombre: "MÓDULO C: CULTURA",
+            pruebas: [
+                { img: "3.1.png", enigma: "PRUEBA 2 · NÚCLEO CULTURAL\nHEMEROTECA LOCAL DIGITALIZADA\n\n[ ANOMALÍA DETECTADA ]\nEl sistema ha recuperado registros asociados a una celebración comunitaria recurrente ('La noche de los faroles'). MIRADA identifica perfectamente las acciones compartidas, los recorridos colectivos, el intercambio de alimentos y las prácticas transmitidas entre generaciones.\n\n❌ ERROR DE COMPRENSIÓN:\nEl algoritmo sigue siendo incapaz de comprender por qué determinadas experiencias afectivas y simbólicas continúan formando parte de la vida de una comunidad a lo largo del tiempo, adquiriendo valor y continuidad social.\n\n⚡ INSTRUCCIÓN:\nAnaliza el documento de la hemeroteca e introduce el concepto que permite reconocer una práctica compartida como parte de la identidad y memoria viva de una comunidad.", sol: "patrimonio cultural" },
+                { img: "3.2.png", enigma: "PRUEBA 3 · NÚCLEO CULTURAL\n\nEl sistema ha recuperado un archivo manual asociado a la interpretación infantil del entorno. Parte del registro permanece bloqueado.\n\nPara desbloquear el acceso, debéis demostrar que comprendéis una cuestión fundamental del desarrollo infantil:\n\n'La percepción infantil inicial del entorno suele centrarse en elementos visibles, experiencias inmediatas y aspectos aislados de la realidad.'\n\n⚡ VALIDACIÓN REQUERIDA:\nPor ello, la percepción infantil inicial del entorno es...", sol: "fragmentaria" },
+                { img: "3.3.png", enigma: "PRUEBA 4 · NÚCLEO CULTURAL\n\nValidación completada. Acceso parcial al registro manual autorizado.\n\nLa secuencia de decodificación MORSE permanece distribuida entre otros núcleos fragmentados. Ningún equipo conserva por sí solo la clave completa de restauración.\n\n📡 MENSAJE CIFRADO EN MORSE:\n . .-.. / . -. - --- .-. -. --- / . ... / ..- -. .- / . -..- .--. . .-. .. . -. -.-. .. .- / .. -. - . --. .-. .- .-.. / .--. .-. --- ..-. ..- -. -.. .- -- . -. - . / ... --- -.-. .. .- .-.. / -.-- / -.-. ..- .-.. - ..- .-. .- .-.. / \n\n📖 PARA DESCIFRAR EL MENSAJE DEBES COLABORAR CON TUS COMPAÑEROS\n\n🔍 ANÁLISIS DEL SISTEMA:\nMIRADA detecta múltiples dimensiones conectadas dentro de la experiencia humana del entorno. El protocolo requiere identificar el enfoque pedagógico capaz de integrar simultáneamente todas esas dimensiones.\n\n⚡ CLAVE REQUERIDA:", sol: "integral" },
+                { img: "3.4.png", enigma: "PRUEBA 5 · NÚCLEO CULTURAL\n\nEl sistema ha recuperado un fragmento pedagógico incompleto. MIRADA detecta una secuencia estructurada… pero no logra interpretar el significado final del registro. Se requiere interpretación humana.\n\n📋 FRAGMENTO RECUPERADO:\nDe la vida, la experiencia\nun niño contempla atento.\nLa observación le da sentido,\ny ordena su pensamiento.\n\nCon palabras llega la verbalización,\ntrazando caminos en su mente.\nY en su simbólica creación,\nnace la representación consciente.\n\n🔍 ANÁLISIS DEL SISTEMA:\nEl protocolo requiere identificar el resultado final de este proceso de construcción de significado y estructuración del pensamiento.\n\n⚡ VALIDACIÓN REQUERIDA:", sol: "comprensión" },
+                { img: "3.5.png", enigma: "PRUEBA 6 · NÚCLEO CULTURAL\n\nTras completar la prueba anterior, MIRADA desbloquea un nuevo fragmento del módulo cultural. El sistema ha logrado identificar y conservar distintos elementos patrimoniales, pero persiste un fallo crítico.\n\n📊 PATRIMONIO CULTURAL · ESTADO DEL SISTEMA:\n✔ CONSERVAR — COMPLETADO\n✔ PROTEGER — COMPLETADO\n✔ CATALOGAR — COMPLETADO\n█████████████ ERROR CRÍTICO\n\n📋 FRAGMENTOS LEGIBLES DEL REGISTRO:\n'...con las nuevas generaciones...'\n'...asegurar su continuidad...'\n\n⚠️ MENSAJE DEL SISTEMA:\nMIRADA logra preservar físicamente los elementos culturales… pero no garantizar su permanencia viva a lo largo del tiempo humano.\n\n⚡ INTERVENCIÓN HUMANA REQUERIDA:", sol: "transmitir" }
+            ],
+            reto: [
+                { num: 7, img: "3.6.png", pregunta: "2ª PARTE · RESTAURACIÓN DEL NÚCLEO CULTURAL\nIDENTIDAD CULTURAL INCOMPLETA\n\nMIRADA ha restaurado parcialmente espacios compartidos, registros patrimoniales y prácticas cotidianas. Sin embargo, el sistema todavía no logra comprender cómo las personas transforman la experiencia vivida en conocimiento social compartido.\n\n🗄️ PRUEBA 1:\nEl patrimonio cultural trasciende los grandes monumentos. También aparece en objetos, costumbres y espacios cotidianos. El proceso de selección es subjetivo y depende críticamente del ______ que la propia comunidad les otorga.", sol: "valor", pistaOtorgada: "📡 PISTA 1 REGISTRADA:\nMIRADA ha identificado con éxito la categoría del sujeto humano que descubre y decodifica el significado cultural del entorno de forma gradual.\n🏷️ ESTADO: Sujeto indexado en el núcleo central." },
+                { num: 8, img: "3.7.png", pregunta: "🗄️ PRUEBA 2:\nLa falsa identificación entre la mera participación social visible y la comprensión cognitiva real del entorno recibe el nombre de...", sol: "espejismo", pistaOtorgada: "📡 PISTA 2 REGISTRADA:\nMIRADA identifica acciones y movimientos superficiales… pero continúa generando errores al intentar interpretar la profundidad de la realidad social que representan." },
+                { num: 9, img: "3.8.png", pregunta: "🗄️ PRUEBA 3:\nIntroduce el concepto que define el desarrollo del sentido de pertenencia a una realidad colectiva y comunitaria construida a lo largo del tiempo.", sol: "identidad", pistaOtorgada: "📡 PISTA 3 REGISTRADA:\nProtocolo de análisis final abierto.\n⚡ INSTRUCCIÓN: Para abrir el candado de este nodo, debéis combinar en una sola frase el sujeto humano identificado en la Pista 1 y la acción cognitiva en tiempo presente que le permite procesar y construir significado a partir de su experiencia cultural." }
+            ],
+            claveFinalItinerario: "el niño interpreta",
+            codigoCajaFuerte: "el niño interpreta"
+        },
+    };
+const TEXTOS_FASE_FINAL = {
+    pantallaCooperativa: {
+        solucion: ["el niño habita", "el niño recuerda", "el niño interpreta"]
+    },
+    pantallaFinalEnigma: {
+        solucion: "mediación docente"
+    },
+    mensajeCierre: "📥 VALIDACIÓN COMPLETADA\n\n💬 MENSAJE FINAL · DRA. VERA SOLÉN:\n'Ningún algoritmo puede sustituir la mirada de un maestro.'\n\n🔒 CIERRE DEL SISTEMA\n¡PROTOCOLO MIRADA ESTABILIZADO CON ÉXITO!"
+};
+    const CODIGOS_COOPERATIVOS = {
+        c1: "el niño habita",
+        c2: "el niño recuerda",
+        c3: "el niño interpreta"
+    };
+    
+    const CLAVE_MEDIACION_DOCENTE = "mediación docente";
+
+    let itinerarioId = null;
+    let indicePrueba = 0; 
+    let indiceReto = 0;   
+    let faseCooperativaValidada = false;
+
+   // --- FUNCIONES DE NAVEGACIÓN ---
+function cambiarPantalla(ocultar, mostrar) {
+    document.getElementById(ocultar).classList.add('oculto');
+    document.getElementById(mostrar).classList.remove('oculto');
+}
+
+// --- FUNCIÓN LIMPIADORA (Llamada por todas las validaciones) ---
+const limpiarTexto = (txt) => {
+    return txt.trim()
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+              .replace(/\s+/g, ' ');           // Elimina espacios múltiples
+};
+
+// --- VALIDACIÓN DE CRUCIGRAMA ---
+function validarAccessItinerario() {
+    let input = limpiarTexto(document.getElementById('clave-crucigrama').value);
+    if (CLAVES_CRUCIGRAMA.hasOwnProperty(input)) {
+        itinerarioId = CLAVES_CRUCIGRAMA[input];
+        document.getElementById('nombre-itinerario').innerText = DATOS_JUEGO[itinerarioId].nombre;
+        indicePrueba = 0;
+        cargarPrueba();
+        cambiarPantalla('pantalla-crucigrama', 'pantalla-pruebas');
+    } else {
+        document.getElementById('error-crucigrama').classList.remove('oculto');
+    }
+}
+
+// --- VALIDACIÓN DE PRUEBAS INTERNAS ---
+function verificarRespuestaPrueba() {
+    let res = limpiarTexto(document.getElementById('respuesta-prueba').value);
+    let sol = limpiarTexto(DATOS_JUEGO[itinerarioId].pruebas[indicePrueba].sol);
+
+    if (res === sol) {
+        indicePrueba++;
+        if (indicePrueba < 5) {
+            cargarPrueba();
+        } else {
+            indiceReto = 0;
+            cargarReto();
+            cambiarPantalla('pantalla-pruebas', 'pantalla-reto');
+        }
+    } else {
+        document.getElementById('feedback-error').classList.remove('oculto');
+    }
+}
+
+function verificarRespuestaReto() {
+    let res = limpiarTexto(document.getElementById('respuesta-reto').value);
+    let rActual = DATOS_JUEGO[itinerarioId].reto[indiceReto];
+    let sol = limpiarTexto(rActual.sol);
+
+    if (res === sol) {
+        let divPista = document.createElement('div');
+        divPista.className = 'pista-ganada';
+        divPista.innerText = rActual.pistaOtorgada;
+        document.getElementById('lista-pistas').appendChild(divPista);
+
+        indiceReto++;
+        if (indiceReto < 3) {
+            cargarReto();
+        } else {
+            // AQUÍ ES DONDE SE ACTIVAN EL CANDADO Y LA IMAGEN AL ACERTAR LA ÚLTIMA
+            document.getElementById('zona-pregunta-reto').classList.add('oculto');
+            let divCandado = document.getElementById('candado-bloqueo-itinerario');
+            divCandado.classList.remove('oculto');
+            
+            // Inyectar la imagen según el itinerario
+            const imagenesPorNodo = {
+                1: "1.9.png",
+                2: "2.9.png",
+                3: "3.9.png"
+            };
+            
+            let imgElement = document.getElementById('img-final-nodo');
+            if(imgElement) {
+                imgElement.src = IMAGENES[imagenesPorNodo[itinerarioId]] || imagenesPorNodo[itinerarioId];
+                imgElement.classList.remove('oculto');
+            }
+        }
+    } else {
+        // AQUÍ SOLO VA EL FEEDBACK DE ERROR
+        document.getElementById('feedback-error-reto').classList.remove('oculto');
+    }
+}
+
+// --- VALIDACIÓN FINAL (Unificada y sin alertas) ---
+function verificarCajaFuerte() {
+    // Leemos las tres cajas
+    let c1 = limpiarTexto(document.getElementById('codigo-final-1').value);
+    let c2 = limpiarTexto(document.getElementById('codigo-final-2').value);
+    let c3 = limpiarTexto(document.getElementById('codigo-final-3').value);
+
+    // Comparamos cada una con su parte correspondiente
+   if (
+    c1 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[0]) &&
+    c2 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[1]) &&
+    c3 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[2])
+){
+        
+        // Si las tres son correctas, avanzamos
+        cambiarPantalla('pantalla-cooperativa', 'pantalla-enigma-final');
+    } else {
+        // Feedback si alguna falla
+        let boton = document.querySelector('.btn-validar-final');
+        if (boton) {
+            boton.innerText = "❌ COMBINACIÓN INCORRECTA";
+            boton.style.backgroundColor = "#ff3333";
+            setTimeout(() => { boton.innerText = "VALIDAR CÓDIGOS"; boton.style.backgroundColor = ""; }, 3000);
+        }
+    }
+}
+
+function verificarEnigmaDefinitivo() {
+    let res = limpiarTexto(document.getElementById('input-enigma-final').value);
+    let sol = limpiarTexto(TEXTOS_FASE_FINAL.pantallaFinalEnigma.solucion);
+    let boton = document.querySelector('.btn-finalizar');
+
+    if (res === sol) {
+        document.getElementById('bloque-enigma-texto').innerText = TEXTOS_FASE_FINAL.mensajeCierre;
+        if(boton) boton.style.display = 'none';
+    } else {
+        if (boton) {
+            boton.innerText = "❌ ACCESO DENEGADO";
+            boton.style.backgroundColor = "#ff3333";
+            setTimeout(() => { boton.innerText = "AUTORIZAR PROTOCOLO"; boton.style.backgroundColor = ""; }, 3000);
+        }
+    }
+}
+
+// --- CARGA DE ELEMENTOS ---
+function cargarPrueba() {
+    let p = DATOS_JUEGO[itinerarioId].pruebas[indicePrueba];
+    document.getElementById('badge-progreso').innerText = `PRUEBA ${indicePrueba + 2} / 10`;
+    document.getElementById('texto-enigma').innerText = p.enigma;
+    document.getElementById('imagen-pista').src = IMAGENES[p.img] || p.img;
+    document.getElementById('respuesta-prueba').value = "";
+    document.getElementById('feedback-error').classList.add('oculto');
+}
+
+function cargarReto() {
+    // 1. Validamos que el objeto exista antes de tocar nada
+    let retoData = DATOS_JUEGO[itinerarioId]?.reto?.[indiceReto];
+    if (!retoData) {
+        console.error("No se encontraron datos para el reto actual.");
+        return; // Salimos de la función si no hay datos, evitando el bloqueo
+    }
+
+    // 2. Referencia directa (asegúrate de que el id exista en el HTML)
+    let img = document.getElementById('imagen_reto');
+    
+    // 3. ACTUALIZACIÓN SEGURA: Solo cambiamos el atributo si la etiqueta existe
+    if (img) {
+        // Asignamos la ruta directamente
+        img.src = IMAGENES[retoData.img] || retoData.img;
+        console.log("Carga intentada para:", retoData.img);
+    }
+
+    // 4. Actualización de textos (sin añadir lógica compleja)
+    document.getElementById('titulo-pregunta-reto').innerText = `PRUEBA ${retoData.num} / 10 (RETO INTERNO)`;
+    document.getElementById('texto-pregunta-reto').innerText = retoData.pregunta;
+    document.getElementById('respuesta-reto').value = "";
+}
+
+// --- FUNCIÓN QUE TE FALTABA PARA AVANZAR AL FINAL ---
+function verificarClaveFinalItinerario() {
+    let input = document.getElementById('clave-final-itinerario');
+    
+    // Verificamos si existe el campo en el HTML
+    if (!input) {
+        console.error("No se encuentra el campo 'clave-final-itinerario' en el HTML.");
+        return;
+    }
+
+    let res = limpiarTexto(input.value);
+    let sol = limpiarTexto(DATOS_JUEGO[itinerarioId].claveFinalItinerario);
+
+    if (res === sol) {
+        // CAMBIO: Ya no usamos 'alert', pasamos directo a la cooperativa
+        cambiarPantalla('pantalla-reto', 'pantalla-cooperativa');
+    } else {
+        // Feedback visual en el botón si fallan
+        let boton = document.querySelector('button[onclick*="verificarClaveFinalItinerario"]');
+        if (boton) {
+            boton.innerText = "❌ SOLUCIÓN RECHAZADA";
+            boton.style.backgroundColor = "#ff3333";
+            setTimeout(() => {
+                boton.innerText = "DESBLOQUEAR NODO";
+                boton.style.backgroundColor = "";
+            }, 2000);
+        }
+    }
+    }
+    function procesarFaseCooperativa() {
+
+    let c1 = limpiarTexto(document.getElementById('codigo-final-1').value);
+    let c2 = limpiarTexto(document.getElementById('codigo-final-2').value);
+    let c3 = limpiarTexto(document.getElementById('codigo-final-3').value);
+
+    if (
+
+        c1 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[0]) &&
+        c2 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[1]) &&
+        c3 === limpiarTexto(TEXTOS_FASE_FINAL.pantallaCooperativa.solucion[2])
+
+    ) {
+
+        // MOSTRAR LA PRUEBA FINAL
+        document.getElementById('bloque-prueba-final').classList.remove('oculto');
+
+        // CAMBIAR EL BOTÓN PARA VALIDAR LA CLAVE FINAL
+        let boton = document.getElementById('btn-activar-final');
+
+        boton.innerText = "🔑 VALIDAR";
+
+        boton.onclick = function () {
+
+            let clave = limpiarTexto(
+                document.getElementById('input-prueba-final').value
+            );
+
+            if (clave === limpiarTexto(CLAVE_MEDIACION_DOCENTE)) {
+
+                cambiarPantalla('pantalla-cooperativa', 'pantalla-victoria');
+
+            } else {
+
+                boton.innerText = "❌ CLAVE INCORRECTA";
+
+                setTimeout(() => {
+                    boton.innerText = "🔑 VALIDAR MEDIACIÓN DOCENTE";
+                }, 2000);
+            }
+        };
+
+    } else {
+
+        let boton = document.getElementById('btn-activar-final');
+
+        boton.innerText = "❌ CÓDIGOS INCORRECTOS";
+
+        setTimeout(() => {
+            boton.innerText = "💥 EJECUTAR PROTOCOLO DE DESBLOQUEO 💥";
+        }, 2000);
+    }
+}
+</script>
+</body>
+</html>
